@@ -1,16 +1,16 @@
 # Supermarket-Checkout
 
-#Table of Contents
+# Table of Contents
 
-#Project Overview
+# Project Overview
 
-#Objective
+# Objective
 - Objective 1
 - 2
 - 3
 - 4
 
-#Contributors
+# Contributors
 (table dine)
 
 - Course:
