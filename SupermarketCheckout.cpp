@@ -1,13 +1,9 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include <cctype>
+#include <SDL2/SDL.h>
 
 using namespace std;
 
-const int MAX_CART_ITEMS = 50;
-const int MAX_USERS = 20;
-
-typedef struct Product {
-  int id;
-}
+const int MAX_CART_ITEMS = 10;
+const int MAX_USERS = 10;
