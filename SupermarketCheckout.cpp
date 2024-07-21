@@ -286,7 +286,231 @@ void addProduct() {
     cout << "Product added successfully." << endl;
 }
 
+void modifyProduct() {
+    if (!isAdmin) {
+        cout << "Only admins can modify products." << endl;
+        return;
+    }
+    int id, quantity;
+    string name;
+    double price;
+    cout << "Enter product ID to modify: ";
+    cin >> id;
+    Product* current = inventory;
+    while (current != nullptr) {
+        if (current->id == id) {
+            cout << "Enter new product name: ";
+            cin.ignore();
+            getline(cin, name);
 
+            // Check for duplicate product name
+            Product* temp = inventory;
+            while (temp != nullptr) {
+                if (temp->name == name && temp->id != id) {
+                    cout << "Product name already exists. Please enter a unique name." << endl;
+                    return;
+                }
+                temp = temp->next;
+            }
+
+            cout << "Enter new product quantity: ";
+            cin >> quantity;
+            if (quantity < 0) {
+                cout << "Quantity cannot be negative." << endl;
+                return;
+            }
+
+            cout << "Enter new product price: ";
+            cin >> price;
+            if (price < 0) {
+                cout << "Price cannot be negative." << endl;
+                return;
+            }
+
+            current->name = name;
+            current->quantity = quantity;
+            current->price = price;
+            cout << "Product modified successfully." << endl;
+            return;
+        }
+        current = current->next;
+    }
+    cout << "Product ID not found." << endl;
+}
+
+void removeProduct() {
+    if (!isAdmin) {
+        cout << "Only admins can remove products." << endl;
+        return;
+    }
+    int id;
+    cout << "Enter product ID to remove: ";
+    cin >> id;
+
+    Product* current = inventory;
+    Product* prev = nullptr;
+
+    while (current != nullptr) {
+        if (current->id == id) {
+            if (prev == nullptr) {
+                inventory = current->next;
+            } else {
+                prev->next = current->next;
+            }
+            delete current;
+            cout << "Product removed successfully." << endl;
+            return;
+        }
+        prev = current;
+        current = current->next;
+    }
+    cout << "Product ID not found." << endl;
+}
+
+void cleanupInventory() {
+    Product* current = inventory;
+    while (current != nullptr) {
+        Product* next = current->next;
+        delete current;
+        current = next;
+    }
+    inventory = nullptr;
+}
+
+void userMenu() {
+    int choice;
+    string input;
+    while (true) {
+        cout << "\nSupermarket Checkout" << endl;
+        cout << "\n1. Register\n2. Login\n3. Exit\nChoose an option: ";
+        cin >> input;
+
+        if (!isNumber(input)){
+            cout << "Invalid Input. Enter a number." << endl;
+            continue;
+        }
+
+        choice = stoi(input);
+
+        switch (choice) {
+            case 1:
+                registerUser();
+                break;
+            case 2:
+                if (loginUser()) {
+                    if (isAdmin) {
+                        return;  // Exit the user menu and proceed to the admin menu
+                    } else {
+                        return;  // Exit the user menu and proceed to the shopping menu
+                    }
+                }
+                break;
+            case 3:
+                cout << "Exiting. Thank you!" << endl;
+                cleanupInventory();
+                exit(0);
+            default:
+                cout << "Invalid option. Please try again." << endl;
+        }
+    }
+}
+
+void shoppingMenu() {
+    int choice, productId, quantity;
+    string input;
+    while (true) {
+        cout << "\n1. View Inventory\n2. View Cart\n3. Add to Cart\n4. Checkout\n5. Top-Up Wallet\n6. Check Balance\n7. Logout\nChoose an option: ";
+        cin >> input;
+
+        if (!isNumber(input)){
+            cout << "Invalid Input. Enter a number." << endl;
+            continue;
+        }
+
+        choice = stoi(input);
+
+        switch (choice) {
+            case 1:
+                displayInventory();
+                break;
+            case 2:
+                displayCart();
+                break;
+            case 3:
+                cout << "Enter product ID to add to cart: ";
+                cin >> productId;
+                cout << "Enter quantity: ";
+                cin >> quantity;
+                addToCart(productId, quantity);
+                break;
+            case 4:
+                checkout();
+                break;
+            case 5:
+                topUpWallet();
+                break;
+            case 6:
+                checkBalance();
+                break;
+            case 7:
+                currentUser = nullptr;
+                cout << "Logged out successfully." << endl;
+                return;  // Exit the shopping menu and return to the user menu
+            default:
+                cout << "Invalid option. Please try again." << endl;
+        }
+    }
+}
+
+void adminMenu() {
+    string input;
+    int choice;
+    while (true) {
+        cout << "\n1. Add Product\n2. Modify Product\n3. Remove Product\n4. View Inventory\n5. Logout\nChoose an option: ";
+        cin >> input;
+
+        if (!isNumber(input)){
+            cout << "Invalid Input. Enter a number." << endl;
+            continue;
+        }
+
+        choice = stoi(input);
+        
+        switch (choice) {
+            case 1:
+                addProduct();
+                break;
+            case 2:
+                modifyProduct();
+                break;
+            case 3:
+                removeProduct();
+                break;
+            case 4:
+                displayInventory();
+                break;
+            case 5:
+                isAdmin = false;
+                cout << "Logged out successfully." << endl;
+                return;  // Exit the admin menu and return to the user menu
+            default:
+                cout << "Invalid option. Please try again." << endl;
+        }
+    }
+}
+
+int main() {
+    initializeInventory();
+    while (true) {
+        if (currentUser == nullptr && !isAdmin) {
+            userMenu();
+        } else if (isAdmin) {
+            adminMenu();
+        } else {
+            shoppingMenu();
+        }
+    }
+}
 
 
 
