@@ -92,6 +92,99 @@ void displayCart() {
     cout << "----------------------------------------" << endl;
 }
 
+void addToCart(int productId, int quantity) {
+    Product* current = inventory;
+    while (current != nullptr) {
+        if (current->id == productId) {
+            if (current->quantity >= quantity) {
+                cart[cartItemCount] = {productId, quantity};
+                cartItemCount++;
+                current->quantity -= quantity;
+                cout << "Added " << quantity << " of " << current->name << " to cart." << endl;
+            } else {
+                cout << "Not enough stock for " << current->name << "." << endl;
+            }
+            return;
+        }
+        current = current->next;
+    }
+    cout << "Product ID not found." << endl;
+}
+
+void generateReceipt() {
+    double total = 0;
+    cout << "\nReceipt:" << endl;
+    cout << "----------------------------------------" << endl;
+    cout << "Quantity\tItem\t\tPrice\t\tTotal" << endl;
+    cout << "----------------------------------------" << endl;
+    for (int i = 0; i < cartItemCount; ++i) {
+        Product* current = inventory;
+        while (current != nullptr) {
+            if (current->id == cart[i].productId) {
+                double cost = cart[i].quantity * current->price;
+                total += cost;
+                cout << cart[i].quantity << "\t\t" << current->name 
+                     << "\t\tPHP " << fixed << setprecision(2) << current->price 
+                     << "\t\tPHP " << fixed << setprecision(2) << cost << endl;
+                break;
+            }
+            current = current->next;
+        }
+    }
+    cout << "----------------------------------------" << endl;
+    cout << "Total:\t\t\t\t\tPHP " << fixed << setprecision(2) << total << endl;
+    cout << "----------------------------------------" << endl;
+}
+
+void checkout() {
+    double total = 0;
+    for (int i = 0; i < cartItemCount; ++i) {
+        Product* current = inventory;
+        while (current != nullptr) {
+            if (current->id == cart[i].productId) {
+                total += cart[i].quantity * current->price;
+                break;
+            }
+            current = current->next;
+        }
+    }
+
+    if (currentUser->wallet >= total) {
+        char confirm;
+        cout << "Your total is PHP " << fixed << setprecision(2) << total << ". Do you want to proceed with the checkout? (y/n): ";
+        cin >> confirm;
+        if (confirm == 'y' || confirm == 'Y') {
+            currentUser->wallet -= total;
+            generateReceipt();
+            cartItemCount = 0;  // Empty the cart after checkout
+            cout << "Checkout successful. Thank you for your purchase!" << endl;
+        } else {
+            cout << "Checkout cancelled." << endl;
+        }
+    } else {
+        cout << "Insufficient funds. Please top-up your wallet." << endl;
+    }
+}
+
+void registerUser() {
+    if (userCount >= MAX_USERS) {
+        cout << "User limit reached. Cannot register more users." << endl;
+        return;
+    }
+    string username, password;
+    cout << "Enter username: ";
+    cin >> username;
+    if (username == "admin") {
+        cout << "Username 'admin' is not allowed." << endl;
+        return;
+    }
+    cout << "Enter password: ";
+    cin >> password;
+    users[userCount] = {username, password, 0.0};
+    userCount++;
+    cout << "User registered successfully." << endl;
+}
+
 bool loginUser() {
     string username, password;
     cout << "Enter username: ";
@@ -192,3 +285,8 @@ void addProduct() {
     inventory = newProduct;
     cout << "Product added successfully." << endl;
 }
+
+
+
+
+
