@@ -35,6 +35,63 @@ int userCount = 0;
 User* currentUser = nullptr;
 bool isAdmin = false;
 
+void initializeInventory() {
+    inventory = new Product{1, "Apple", 50, 100, nullptr};
+    inventory->next = new Product{2, "Banana", 60, 150, nullptr};
+    inventory->next->next = new Product{3, "Orange", 40, 80, nullptr};
+    inventory->next->next->next = new Product{4, "Milk", 90, 50, nullptr};
+    inventory->next->next->next->next = new Product{5, "Bread", 70, 60, nullptr};
+}
+
+bool isNumber(const string& str) {
+    for (char const &c : str) {
+        if (isdigit(c) ==  0)
+        return false;
+    }
+    return true;
+}
+
+void displayInventory() {
+    cout << "Inventory:" << endl;
+    Product* current = inventory;
+    while (current != nullptr) {
+        cout << "ID: " << current->id 
+             << ", Name: " << current->name 
+             << ", Price: PHP " << fixed << setprecision(2) << current->price 
+             << ", Quantity: " << current->quantity << endl;
+        current = current->next;
+    }
+}
+
+void displayCart() {
+    if (cartItemCount == 0) {
+        cout << "Your cart is empty." << endl;
+        return;
+    }
+    double total = 0;
+    cout << "Your Cart:" << endl;
+    cout << "----------------------------------------" << endl;
+    cout << "Quantity\tItem\t\tPrice\t\tTotal" << endl;
+    cout << "----------------------------------------" << endl;
+    for (int i = 0; i < cartItemCount; ++i) {
+        Product* current = inventory;
+        while (current != nullptr) {
+            if (current->id == cart[i].productId) {
+                double cost = cart[i].quantity * current->price;
+                total += cost;
+                cout << cart[i].quantity << "\t\t" << current->name 
+                     << "\t\tPHP " << fixed << setprecision(2) << current->price 
+                     << "\t\tPHP " << fixed << setprecision(2) << cost << endl;
+                break;
+            }
+            current = current->next;
+        }
+    }
+    cout << "----------------------------------------" << endl;
+    cout << "Total:\t\t\t\t\tPHP " << fixed << setprecision(2) << total << endl;
+    cout << "----------------------------------------" << endl;
+}
+
 bool loginUser() {
     string username, password;
     cout << "Enter username: ";
