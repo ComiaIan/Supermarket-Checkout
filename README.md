@@ -1,6 +1,9 @@
 # Supermarket-Checkout
 
 # Table of Contents
+- Project Overview
+- Objectives
+- Contributors
 
 # Project Overview
 
