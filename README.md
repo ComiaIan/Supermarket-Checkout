@@ -23,7 +23,7 @@ The following listed tools are utilized in this project.
 # Contributors
 |      Name     |     Course    |    Role    |
 | ------------- | ------------- | ---------- |
-| John Timothy Cock Caranza  | BS Computer Science | Developer |
+| John Timothy Caranza  | BS Computer Science | Developer |
 | Ian Emmanuel M. Comia | BS Computer Science | Developer |
 | Ayelet D'arcy C. De Castro | BS Computer Science | Developer |
 | Christian B. Nayre | BS Computer Science | Developer |
