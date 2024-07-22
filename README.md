@@ -1,9 +1,9 @@
 # Supermarket-Checkout
 
 # Table of Contents
-[1. Project Overview] (#project-Overview)
-[2. Objectives] (#objective)
-[3. Contributors] (#contributors)
+[1. Project Overview](#project-Overview)
+[2. Objectives](#objective)
+[3. Contributors](#contributors)
 
 ## Project Overview
 The Supermarket-Checkout system allows customers to check out their groceries contactlessly, which is one of its many convenient features. This platform streamlines the way people do their grocery shopping.
