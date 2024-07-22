@@ -23,10 +23,10 @@ The following listed tools are utilized in this project.
 # Contributors
 |      Name     |     Course    |    Role    |
 | ------------- | ------------- | ---------- |
-| John Timothy Caranza  | BS Computer Science | Developer |
-| Ian Emmanuel M. Comia | BS Computer Science | Developer |
-| Ayelet D'arcy C. De Castro | BS Computer Science | Developer |
-| Christian B. Nayre | BS Computer Science | Developer |
+| Caranza, John Timothy | BS Computer Science | Developer |
+| Comia, Ian Emmanuel M. | BS Computer Science | Developer |
+| De Castro, Ayelet D'arcy C. | BS Computer Science | Developer |
+| Nayre, Christian B. | BS Computer Science | Developer |
 
 - Course:
   - CS-131 (Data Structures and Analysis)
