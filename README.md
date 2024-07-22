@@ -1,7 +1,7 @@
 # Supermarket-Checkout
 
 # Table of Contents
-[1. Project Overview] (#Project Overview)
+[1. Project Overview] (#Project-Overview)
 [2. Objectives] (#Objective)
 [3. Contributors] (#Contributors)
 
