@@ -14,8 +14,12 @@ The Supermarket-Checkout system allows customers to check out their groceries co
 - **Real-Time Inventory Updates:** Ensure the self-checkout system is connected to the store's inventory management system to provide real-time updates on stock levels, aiding both customers and store staff.
 - **Centralized Product Management System:** Implement a centralized database that allows for efficient addition, deletion, and modification of products that is updated in real-time.
 
+# Technology Stack
+The following listed tools are utilized in this project.
 
-
+**Everything:**
+- Visual Studio Code
+- C++
 # Contributors
 |      Name     |     Course    |    Role    |
 | ------------- | ------------- | ---------- |
