@@ -93,7 +93,7 @@ void addProduct() {
     cout << "Enter product ID: ";
     cin >> id;
 
-    // Check for duplicate product ID
+
     Product* current = inventory;
     while (current != nullptr) {
         if (current->id == id) {
@@ -107,7 +107,7 @@ void addProduct() {
     cin.ignore();
     getline(cin, name);
 
-    // Check for duplicate product name
+
     current = inventory;
     while (current != nullptr) {
         if (current->name == name) {
