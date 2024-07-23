@@ -381,8 +381,14 @@ void userMenu() {
     int choice;
     string input;
     while (true) {
-        cout << "\nSupermarket Checkout" << endl;
-        cout << "\n1. Register\n2. Login\n3. Exit\nChoose an option: ";
+        cout << "\n|========================|\n";
+        cout << "|  Supermarket Checkout  |\n";
+        cout << "|========================|\n";
+        cout << "| 1. Register            |\n";
+        cout << "| 2. Login               |\n";
+        cout << "| 3. Exit                |\n";
+        cout << "|========================|";
+        cout << "\nChoose an option: ";
         cin >> input;
 
         if (!isNumber(input)){
@@ -419,7 +425,16 @@ void shoppingMenu() {
     int choice, productId, quantity;
     string input;
     while (true) {
-        cout << "\n1. View Inventory\n2. View Cart\n3. Add to Cart\n4. Checkout\n5. Top-Up Wallet\n6. Check Balance\n7. Logout\nChoose an option: ";
+        cout << "\n|=========================|\n";
+        cout << "|1. View Inventory        |\n";
+        cout << "|2. View Cart             |\n";
+        cout << "|3. Add to cart           |\n";
+        cout << "|4. Check Out             |\n";
+        cout << "|5. Top-up Wallet         |\n";
+        cout << "|6. Check Balance         |\n";
+        cout << "|7. Logout                |\n";
+        cout << "|=========================|\n" ;
+        cout << "Choose an option: ";
         cin >> input;
 
         if (!isNumber(input)){
@@ -437,6 +452,7 @@ void shoppingMenu() {
                 displayCart();
                 break;
             case 3:
+                displayInventory();
                 cout << "Enter product ID to add to cart: ";
                 cin >> productId;
                 cout << "Enter quantity: ";
@@ -466,7 +482,14 @@ void adminMenu() {
     string input;
     int choice;
     while (true) {
-        cout << "\n1. Add Product\n2. Modify Product\n3. Remove Product\n4. View Inventory\n5. Logout\nChoose an option: ";
+        cout << "\n|=========================|\n";
+        cout << "|1. Add Product           |\n";
+        cout << "|2. Modify Product        |\n";
+        cout << "|3. Remove Product        |\n";
+        cout << "|4. View Inventory        |\n";
+        cout << "|5. Logout                |\n";
+        cout << "|=========================|\n" ;
+         cout << "Choose an option: ";
         cin >> input;
 
         if (!isNumber(input)){
