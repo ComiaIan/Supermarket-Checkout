@@ -52,15 +52,17 @@ bool isNumber(const string& str) {
 }
 
 void displayInventory() {
-    cout << "Inventory:" << endl;
+    cout << "\nInventory:" << endl;
+    cout << "============================================================================\n";
     Product* current = inventory;
     while (current != nullptr) {
-        cout << "ID: " << current->id 
-             << ", Name: " << current->name 
-             << ", Price: PHP " << fixed << setprecision(2) << current->price 
-             << ", Quantity: " << current->quantity << endl;
+        cout << "\tID: " << current->id 
+             << "\tName: " << current->name 
+             << "\tPrice: PHP " << fixed << setprecision(2) << current->price 
+             << "\tQuantity: " << current->quantity << endl;
         current = current->next;
     }
+    cout << "============================================================================\n";
 }
 
 void displayCart() {
@@ -70,9 +72,9 @@ void displayCart() {
     }
     double total = 0;
     cout << "Your Cart:" << endl;
-    cout << "----------------------------------------" << endl;
-    cout << "Quantity\tItem\t\tPrice\t\tTotal" << endl;
-    cout << "----------------------------------------" << endl;
+    cout << "---------------------------------------------------------------------" << endl;
+    cout << "Quantity\tItem\t\tPrice\t\t\tTotal" << endl;
+    cout << "---------------------------------------------------------------------" << endl;
     for (int i = 0; i < cartItemCount; ++i) {
         Product* current = inventory;
         while (current != nullptr) {
@@ -87,11 +89,10 @@ void displayCart() {
             current = current->next;
         }
     }
-    cout << "----------------------------------------" << endl;
-    cout << "Total:\t\t\t\t\tPHP " << fixed << setprecision(2) << total << endl;
-    cout << "----------------------------------------" << endl;
+    cout << "=====================================================================" << endl;
+    cout << "Total:\t\t\t\t\t\t\tPHP " << fixed << setprecision(2) << total << endl;
+    cout << "=====================================================================" << endl;
 }
-
 void addToCart(int productId, int quantity) {
     Product* current = inventory;
     while (current != nullptr) {
