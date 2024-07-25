@@ -19,7 +19,7 @@ The Supermarket-Checkout system allows customers to check out their groceries co
 ## Contributors
 |      Name     |     Course    |    Role    |
 | ------------- | ------------- | ---------- |
-| Carranza, John Timothy | BS Computer Science | Developer |
+| Carranza, John Timothy S. | BS Computer Science | Developer |
 | Comia, Ian Emmanuel M. | BS Computer Science | Developer |
 | De Castro, Ayelet D'arcy C. | BS Computer Science | Developer |
 | Nayre, Christian B. | BS Computer Science | Developer |
